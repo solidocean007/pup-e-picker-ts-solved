@@ -1,6 +1,8 @@
 // you can use this type for react children if you so choose
 import { ReactNode } from "react";
 import { Link } from "react-router-dom";
+import { FunctionalDogs } from "./FunctionalDogs";
+import { FunctionalCreateDogForm } from "./FunctionalCreateDogForm";
 
 export const FunctionalSection = () => {
   return (
@@ -25,7 +27,10 @@ export const FunctionalSection = () => {
           </div>
         </div>
       </div>
-      <div className="content-container"></div>
+      <div className="content-container">
+        <FunctionalDogs />
+        <FunctionalCreateDogForm />
+      </div>
     </section>
   );
 };

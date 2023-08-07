@@ -1,5 +1,4 @@
-import { FunctionalCreateDogForm } from "./FunctionalCreateDogForm";
-import { FunctionalDogs } from "./FunctionalDogs";
+
 import { FunctionalSection } from "./FunctionalSection";
 
 export function FunctionalApp() {
@@ -9,8 +8,6 @@ export function FunctionalApp() {
         <h1>pup-e-picker (Functional)</h1>
       </header>
       <FunctionalSection />
-      <FunctionalDogs />
-      <FunctionalCreateDogForm />
     </div>
   );
 }
