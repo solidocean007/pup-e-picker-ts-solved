@@ -1,4 +1,4 @@
-
+ 
 import { FunctionalSection } from "./FunctionalSection";
 
 export function FunctionalApp() {
