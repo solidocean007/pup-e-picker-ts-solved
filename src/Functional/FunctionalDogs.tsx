@@ -6,27 +6,12 @@ import { Requests } from "../api";
 export const FunctionalDogs = ({
   allDogs,
   setAllDogs,
-  dogsToShow,
+  dogArray,
 }: {
   allDogs: Dog[];
   setAllDogs: (allDogs: Dog[]) => void;
-  dogsToShow: string;
+  dogArray: Dog[];
 }) => {
-  //I need an array of dogs selected based on dogsToShow state.
-  //If dogsToShow is 'ShowAll' then 'allDogs' are shown.
-
-  //If favoriteDogs then a variable that equals the dogs with the 'favorite: true' property
-  const everyFavoriteDog = allDogs.filter((pup) => pup.isFavorite == true);
-  const unFavoriteDog = allDogs.filter((pup) => pup.isFavorite == false);
-
-  let dogArray: Dog[] = [];
-  if (dogsToShow === "ShowAllDogs") {
-    dogArray = allDogs;
-  } else if (dogsToShow === "ShowFavoriteDogs") {
-    dogArray = everyFavoriteDog;
-  } else {
-    dogArray = unFavoriteDog;
-  }
 
   return (
     <>
