@@ -10,9 +10,10 @@ import { Dog } from "../types";
 export const FunctionalSection = () => {
   // This is the state of dogs from the database
   const [allDogs, setAllDogs] = useState<Dog[]>([]);
-
   // This is which dogs to show depending on the users selection of 'favorited' or 'unfavorited'. Default is 'ShowAllDogs'
   const [dogsToShow, setDogsToShow] = useState("ShowAllDogs");
+  // State of section: show dogs or show create dog
+  const [showCreateDog, setShowCreateDog] = useState(false);
 
   // I think this useEffect gets all of the dogs when the component renders.
   useEffect(() => {
@@ -24,11 +25,11 @@ export const FunctionalSection = () => {
     console.log(allDogs);
   }, [allDogs]);
 
-   //Variables to filter the allDogs array by their 'isFavorite' property.
-   const everyFavoriteDog = allDogs.filter((pup) => pup.isFavorite);
-   const unFavoriteDog = allDogs.filter((pup) => !pup.isFavorite);
+  //Variables to filter the allDogs array by their 'isFavorite' property.
+  const everyFavoriteDog = allDogs.filter((pup) => pup.isFavorite);
+  const unFavoriteDog = allDogs.filter((pup) => !pup.isFavorite);
 
-   // dogArray will be equal to the variables above dependent on the state of the users selection.
+  // dogArray will be equal to the variables above dependent on the state of the users selection.
   let dogArray: Dog[] = [];
   if (dogsToShow === "ShowAllDogs") {
     dogArray = allDogs;
@@ -36,10 +37,8 @@ export const FunctionalSection = () => {
     dogArray = everyFavoriteDog;
   } else if (dogsToShow === "ShowUnfavoriteDogs") {
     dogArray = unFavoriteDog;
-    console.log(dogArray, ': is dogArray')
+    console.log(dogArray, ": is dogArray");
   }
-
- 
 
   return (
     <section id="main-section">
@@ -51,10 +50,16 @@ export const FunctionalSection = () => {
         <div className="selectors">
           {/* This should display the favorited count */}
           <div
-            className={`selector ${dogsToShow ==="ShowFavoriteDogs" ? 'active' : null}`}
+            className={`selector ${
+              dogsToShow === "ShowFavoriteDogs" ? "active" : null
+            }`}
             onClick={() => {
               // Create Ternary statement to switch between 'ShowFavoriteDogs' and 'ShowAllDogs'
-              setDogsToShow(dogsToShow === "ShowFavoriteDogs"? "ShowAllDogs": "ShowFavoriteDogs");
+              setDogsToShow(
+                dogsToShow === "ShowFavoriteDogs"
+                  ? "ShowAllDogs"
+                  : "ShowFavoriteDogs"
+              );
             }}
           >
             favorited ( {everyFavoriteDog.length} )
@@ -62,26 +67,40 @@ export const FunctionalSection = () => {
 
           {/* This should display the unfavorited count */}
           <div
-            className={`selector ${dogsToShow ==="ShowUnfavoriteDogs" ? 'active' : null}`}
+            className={`selector ${
+              dogsToShow === "ShowUnfavoriteDogs" ? "active" : null
+            }`}
             onClick={() => {
               // Create Ternary statement to switch between 'ShowUnFavoriteDogs' and 'ShowAllDogs'
-              setDogsToShow(dogsToShow === "ShowUnfavoriteDogs" ? "ShowAllDogs": "ShowUnfavoriteDogs");
+              setDogsToShow(
+                dogsToShow === "ShowUnfavoriteDogs"
+                  ? "ShowAllDogs"
+                  : "ShowUnfavoriteDogs"
+              );
             }}
           >
             unfavorited ( {unFavoriteDog.length} )
           </div>
-          <div className={`selector`} onClick={() => {}}>
+          <div
+            className={`selector`}
+            onClick={() => {
+              setShowCreateDog(showCreateDog ? false : true);
+            }}
+          >
             create dog
           </div>
         </div>
       </div>
       <div className="content-container">
-        <FunctionalDogs
-          allDogs={allDogs}
-          setAllDogs={setAllDogs}
-          dogArray={dogArray}
-        />
-        <FunctionalCreateDogForm />
+        {!showCreateDog ? (
+          <FunctionalDogs
+            allDogs={allDogs}
+            setAllDogs={setAllDogs}
+            dogArray={dogArray}
+          />
+        ) : (
+          <FunctionalCreateDogForm allDogs={allDogs} setAllDogs={setAllDogs} />
+        )}
       </div>
     </section>
   );
