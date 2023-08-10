@@ -1,11 +1,95 @@
 {
   "dogs": [
     {
-      "name": "Stuart",
-      "image": "/assets/blue-heeler.png",
-      "description": "Home sunny strategize loosely optimize Borders SMTP leverage",
+      "name": "Bernhard",
+      "image": "/assets/corgi.png",
+      "description": "24/365 Electric Moscovium Practical JSON snooze yellow",
       "isFavorite": true,
-      "id": 2
+      "id": 11
+    },
+    {
+      "name": "Sophia",
+      "image": "/assets/boxer.png",
+      "description": "West Keyboard systems Concrete Beatty orchestrate amusing",
+      "isFavorite": true,
+      "id": 12
+    },
+    {
+      "name": "Riley",
+      "image": "/assets/blue-heeler.png",
+      "description": "Ryan Gasoline Recumbent degree yellow",
+      "isFavorite": false,
+      "id": 13
+    },
+    {
+      "name": "Coy",
+      "image": "/assets/corgi.png",
+      "description": "Southeast occupation Manager Sausages Chevrolet opposite payment",
+      "isFavorite": true,
+      "id": 14
+    },
+    {
+      "name": "Kamille",
+      "image": "/assets/chihuahua.avif",
+      "description": "ROI Chips Loan Southwest Northwest synergy Germany circuit",
+      "isFavorite": false,
+      "id": 15
+    },
+    {
+      "name": "Taryn",
+      "image": "/assets/corgi.png",
+      "description": "Northeast Rock San Ruthenium Intelligent regarding Cambridgeshire",
+      "isFavorite": true,
+      "id": 16
+    },
+    {
+      "name": "Elda",
+      "image": "/assets/dalmation.png",
+      "description": "capacitor invoice Northwest West structure red Facilitator",
+      "isFavorite": true,
+      "id": 17
+    },
+    {
+      "name": "Grayce",
+      "image": "/assets/dalmation.png",
+      "description": "invoice Computer Metal Borders hmph",
+      "isFavorite": false,
+      "id": 18
+    },
+    {
+      "name": "Hilton",
+      "image": "/assets/dalmation.png",
+      "description": "consequently lux Alaska Bedfordshire wetly Virginia Electronic Demigender",
+      "isFavorite": false,
+      "id": 19
+    },
+    {
+      "name": "Beefy",
+      "description": "Big dog",
+      "image": "/assets/blue-heeler.png",
+      "isFavorite": true,
+      "id": 20
+    },
+    {
+      "name": "Beefy",
+      "description": "Big dog",
+      "image": "/assets/blue-heeler.png",
+      "isFavorite": true,
+      "id": 21
+    },
+    {
+      "name": "Rex",
+      "description": "likes sex",
+      "image": "/assets/blue-heeler.png",
+      "isFavorite": true,
+      "id": 22
+    },
+    {
+      "name": "stuffy",
+      "description": "with the buffy",
+      "image": "/assets/blue-heeler.png",
+      "isFavorite": true,
+      "id": 23
     }
   ]
 }

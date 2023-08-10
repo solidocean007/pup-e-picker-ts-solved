@@ -13,6 +13,8 @@ export const FunctionalSection = () => {
   const [dogsToShow, setDogsToShow] = useState("ShowAllDogs");
   // State of section: show dogs or show create dog
   const [showCreateDog, setShowCreateDog] = useState(false);
+  // State of loading while fetching data
+  const [isLoading, setIsLoading] = useState<boolean>(false);
 
   // I think this useEffect gets all of the dogs when the component renders.
   useEffect(() => {
@@ -81,9 +83,7 @@ export const FunctionalSection = () => {
             unfavorited ( {unFavoriteDog.length} )
           </div>
           <div
-            className={`selector ${
-              showCreateDog ? 'active' : null
-            }`}
+            className={`selector ${showCreateDog ? "active" : null}`}
             onClick={() => {
               setShowCreateDog(showCreateDog ? false : true);
             }}
@@ -98,9 +98,16 @@ export const FunctionalSection = () => {
             allDogs={allDogs}
             setAllDogs={setAllDogs}
             dogArray={dogArray}
+            isLoading={isLoading}
+            setIsLoading={setIsLoading}
           />
         ) : (
-          <FunctionalCreateDogForm  allDogs={allDogs} setAllDogs={setAllDogs} setShowCreateDog={setShowCreateDog} />
+          <FunctionalCreateDogForm
+            allDogs={allDogs}
+            setAllDogs={setAllDogs}
+            isLoading={isLoading}
+            setIsLoading={setIsLoading}
+          />
         )}
       </div>
     </section>

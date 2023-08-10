@@ -1,4 +1,3 @@
-import { useState, useEffect } from "react";
 import { DogCard } from "../Shared/DogCard";
 import { Dog } from "../types";
 import { Requests } from "../api";
@@ -7,13 +6,16 @@ export const FunctionalDogs = ({
   allDogs,
   setAllDogs,
   dogArray,
+  isLoading,
+  setIsLoading,
 }: {
   allDogs: Dog[];
   setAllDogs: (allDogs: Dog[]) => void;
   dogArray: Dog[];
+  isLoading: boolean;
+  setIsLoading: (arg: boolean) => boolean;
 }) => {
-  // State of loading while fetching data
-  const [isLoading, setIsLoading] = useState<boolean>(false);
+  
   return (
     <>
       <h1>{isLoading ? "Loading..." : null}</h1>

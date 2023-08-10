@@ -16,11 +16,13 @@ const defaultSelectedImage = dogPictures.BlueHeeler;
 export const FunctionalCreateDogForm = ({
   allDogs,
   setAllDogs,
-  setShowCreateDog,
+  isLoading,
+  setIsLoading,
 }: {
   allDogs: Dog[];
   setAllDogs: (allDogs: Dog[]) => void;
-  setShowCreateDog: (arg: boolean) => void;
+  isLoading: boolean;
+  setIsLoading: (arg: boolean) => boolean;
 }) => {
   const [newDog, setNewDog] = useState<Omit<Dog, "id">>({
     name: "",
@@ -28,6 +30,15 @@ export const FunctionalCreateDogForm = ({
     image: defaultSelectedImage,
     isFavorite: true,
   });
+
+  const formReset = () => {
+    setNewDog({
+      name: "",
+      description: "",
+      image: defaultSelectedImage,
+      isFavorite: true,
+    });
+  };
 
   return (
     <form
@@ -37,10 +48,12 @@ export const FunctionalCreateDogForm = ({
         e.preventDefault();
         Requests.postDog(newDog)
           .then((createdDog) => {
+            setIsLoading(true);
             const updatedDogs = [...allDogs, createdDog];
             setAllDogs(updatedDogs);
           })
-        setShowCreateDog(false);
+          .finally(() => setIsLoading(false));
+        formReset();
       }}
     >
       <h4>Create a New Dog</h4>
@@ -81,7 +94,7 @@ export const FunctionalCreateDogForm = ({
           );
         })}
       </select>
-      <input type="submit" disabled={false} />
+      <input type="submit" disabled={isLoading} />
     </form>
   );
 };
