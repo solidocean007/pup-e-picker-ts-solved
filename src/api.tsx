@@ -1,4 +1,5 @@
 export const baseUrl = "http://localhost:3000";
+import { TNewDog } from "./Functional/FunctionalCreateDogForm";
 import { Dog } from "./types";
 
 export const Requests = {
@@ -6,9 +7,18 @@ export const Requests = {
   getAllDogs: () => {
     return fetch(`${baseUrl}/dogs`).then((response) => response.json());
   },
+  
   // should create a dog in the database from a partial dog object
   // and return a promise with the result
-  postDog: () => {},
+  postDog: (dog: Omit<Dog, 'id'>) => {
+    return fetch(`${baseUrl}/dogs`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify(dog)
+    }).then(response => response.json())
+  },
 
   // should delete a dog from the database
   deleteDog: (id: number) => {
@@ -17,7 +27,7 @@ export const Requests = {
     });
   },
 
-  // Inside Requests object
+  // Update dogs favorite status
   updateDog: (id: number, updatedDog: Dog) => {
     return fetch(`${baseUrl}/dogs/${id}`, {
       method: "PATCH",

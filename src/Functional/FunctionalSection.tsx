@@ -1,8 +1,7 @@
 // you can use this type for react children if you so choose
-import { ReactNode, useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { Requests } from "../api";
-
 import { FunctionalDogs } from "./FunctionalDogs";
 import { FunctionalCreateDogForm } from "./FunctionalCreateDogForm";
 import { Dog } from "../types";
@@ -20,7 +19,7 @@ export const FunctionalSection = () => {
     Requests.getAllDogs().then(setAllDogs);
   }, []);
 
-  // This useEffect simply console.logs the allDogs after each change.
+  // This useEffect simply console logs the allDogs after each change.
   useEffect(() => {
     console.log(allDogs);
   }, [allDogs]);
@@ -82,7 +81,9 @@ export const FunctionalSection = () => {
             unfavorited ( {unFavoriteDog.length} )
           </div>
           <div
-            className={`selector`}
+            className={`selector ${
+              showCreateDog ? 'active' : null
+            }`}
             onClick={() => {
               setShowCreateDog(showCreateDog ? false : true);
             }}
@@ -99,7 +100,7 @@ export const FunctionalSection = () => {
             dogArray={dogArray}
           />
         ) : (
-          <FunctionalCreateDogForm allDogs={allDogs} setAllDogs={setAllDogs} />
+          <FunctionalCreateDogForm  allDogs={allDogs} setAllDogs={setAllDogs} setShowCreateDog={setShowCreateDog} />
         )}
       </div>
     </section>
