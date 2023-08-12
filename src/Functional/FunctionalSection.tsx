@@ -1,38 +1,42 @@
-// you can use this type for react children if you so choose
-import { useState } from "react";
 import { Link } from "react-router-dom";
 import { Dog } from "../types";
 import { DogsToShowType } from "./FunctionalDogs";
 
 interface FunctionalSectionProps {
   children: React.ReactNode;
-  allDogs: Dog[] | null;
-  // setAllDogs: React.Dispatch<React.SetStateAction<Dog[]>>;
-  // setDogsToShow : DogsToShowType;
-  // dogArray: Dog[];
-  // isLoading: boolean;
-  // setIsLoading: React.Dispatch<React.SetStateAction<boolean>>;
+  allDogs: Dog[];
+  dogsToShow: DogsToShowType;
+  setDogsToShow: React.Dispatch<React.SetStateAction<DogsToShowType>>;
   showCreateDog: boolean;
   setShowCreateDog: React.Dispatch<React.SetStateAction<boolean>>;
+  everyFavoriteDog: Dog[];
+  unFavoriteDogs: Dog[];
 }
 
 export const FunctionalSection: React.FC<FunctionalSectionProps> = ({
-  children, allDogs, showCreateDog, setShowCreateDog
+  children,
+  dogsToShow,
+  setDogsToShow,
+  showCreateDog,
+  setShowCreateDog,
+  everyFavoriteDog,
+  unFavoriteDogs,
 }) => {
-  // State of dogs shown based on all dogs, favorite or unfavorite dogs.
-  const [dogsToShow, setDogsToShow] = useState<DogsToShowType>("ShowAllDogs");
 
-  // Variables to filter the allDogs array by their 'isFavorite' property.
-  const everyFavoriteDog = allDogs?.filter((pup: Dog) => pup.isFavorite || []);
-  const unFavoriteDog = allDogs?.filter((pup: Dog) => !pup.isFavorite || []);
-
-  // DogArray will be equal to the variables above dependent on the state of the users selection.
-  let dogArray: Dog[] = [];
-  dogsToShow === "ShowAllDogs"
-    ? (dogArray = allDogs)
-    : dogsToShow === "ShowFavoriteDogs"
-    ? (dogArray = everyFavoriteDog)
-    : (dogArray = unFavoriteDog);
+  function handleClick(button:string) {
+    return ()=>{
+      setShowCreateDog(false);
+    if (button === "favoriteButton") {
+      setDogsToShow(
+        dogsToShow === "ShowFavoriteDogs" ? "ShowAllDogs" : "ShowFavoriteDogs"
+      );
+    } else {
+      setDogsToShow(
+        dogsToShow === "ShowFavoriteDogs" ? "ShowUnfavoriteDogs" : "ShowAllDogs"
+      );
+    }
+    }
+  }
 
   return (
     <section id="main-section">
@@ -45,16 +49,9 @@ export const FunctionalSection: React.FC<FunctionalSectionProps> = ({
           {/* This should display the favorited count */}
           <div
             className={`selector ${
-              dogsToShow === "ShowFavoriteDogs" ? "active" : null
+              dogsToShow === "ShowFavoriteDogs" && !showCreateDog? "active" : null
             }`}
-            onClick={() => {
-              // Create Ternary statement to switch between 'ShowFavoriteDogs' and 'ShowAllDogs'
-              setDogsToShow(
-                dogsToShow === "ShowFavoriteDogs"
-                  ? "ShowAllDogs"
-                  : "ShowFavoriteDogs"
-              );
-            }}
+            onClick={handleClick("favoriteButton")}
           >
             favorited ( {everyFavoriteDog?.length} )
           </div>
@@ -62,18 +59,11 @@ export const FunctionalSection: React.FC<FunctionalSectionProps> = ({
           {/* This should display the unfavorited count */}
           <div
             className={`selector ${
-              dogsToShow === "ShowUnfavoriteDogs" ? "active" : null
+              dogsToShow === "ShowUnfavoriteDogs" && !showCreateDog? "active" : null
             }`}
-            onClick={() => {
-              // Create Ternary statement to switch between 'ShowUnFavoriteDogs' and 'ShowAllDogs'
-              setDogsToShow(
-                dogsToShow === "ShowUnfavoriteDogs"
-                  ? "ShowAllDogs"
-                  : "ShowUnfavoriteDogs"
-              );
-            }}
+            onClick={handleClick("unFavoriteButton")}
           >
-            unfavorited ( {unFavoriteDog?.length} )
+            unfavorited ( {unFavoriteDogs?.length} )
           </div>
           <div
             className={`selector ${showCreateDog ? "active" : null}`}

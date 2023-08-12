@@ -32,28 +32,28 @@
       "name": "Beefy",
       "description": "Big dog",
       "image": "/assets/blue-heeler.png",
-      "isFavorite": true,
+      "isFavorite": false,
       "id": 20
     },
     {
       "name": "Beefy",
       "description": "Big dog",
       "image": "/assets/blue-heeler.png",
-      "isFavorite": true,
+      "isFavorite": false,
       "id": 21
     },
     {
       "name": "Rex",
       "description": "likes sex",
       "image": "/assets/blue-heeler.png",
-      "isFavorite": true,
+      "isFavorite": false,
       "id": 22
     },
     {
       "name": "stuffy",
       "description": "with the buffy",
       "image": "/assets/blue-heeler.png",
-      "isFavorite": true,
+      "isFavorite": false,
       "id": 23
     },
     {
