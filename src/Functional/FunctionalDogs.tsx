@@ -1,19 +1,24 @@
 import { DogCard } from "../Shared/DogCard";
 import { Dog } from "../types";
 import { Requests } from "../api";
+import React, { Dispatch, ReactEventHandler, useState } from "react";
+
+export type DogsToShowType =
+  | "ShowAllDogs"
+  | "ShowFavoriteDogs"
+  | "ShowUnfavoriteDogs";
 
 export const FunctionalDogs = ({
   allDogs,
   setAllDogs,
-  dogArray,
   isLoading,
   setIsLoading,
 }: {
   allDogs: Dog[];
-  setAllDogs: (allDogs: Dog[]) => void;
-  dogArray: Dog[];
+  setAllDogs: React.Dispatch<React.SetStateAction<Dog[]>>;
   isLoading: boolean;
-  setIsLoading: (arg: boolean) => boolean;
+  setIsLoading: React.Dispatch<React.SetStateAction<boolean>>
+
 }) => {
   
   return (

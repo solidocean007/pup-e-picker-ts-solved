@@ -1,45 +1,38 @@
 // you can use this type for react children if you so choose
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { Link } from "react-router-dom";
-import { Requests } from "../api";
-import { FunctionalDogs } from "./FunctionalDogs";
-import { FunctionalCreateDogForm } from "./FunctionalCreateDogForm";
 import { Dog } from "../types";
+import { DogsToShowType } from "./FunctionalDogs";
 
-export const FunctionalSection = () => {
-  // This is the state of dogs from the database
-  const [allDogs, setAllDogs] = useState<Dog[]>([]);
-  // This is which dogs to show depending on the users selection of 'favorited' or 'unfavorited'. Default is 'ShowAllDogs'
-  const [dogsToShow, setDogsToShow] = useState("ShowAllDogs");
-  // State of section: show dogs or show create dog
-  const [showCreateDog, setShowCreateDog] = useState(false);
-  // State of loading while fetching data
-  const [isLoading, setIsLoading] = useState<boolean>(false);
+interface FunctionalSectionProps {
+  children: React.ReactNode;
+  allDogs: Dog[] | null;
+  // setAllDogs: React.Dispatch<React.SetStateAction<Dog[]>>;
+  // setDogsToShow : DogsToShowType;
+  // dogArray: Dog[];
+  // isLoading: boolean;
+  // setIsLoading: React.Dispatch<React.SetStateAction<boolean>>;
+  showCreateDog: boolean;
+  setShowCreateDog: React.Dispatch<React.SetStateAction<boolean>>;
+}
 
-  // I think this useEffect gets all of the dogs when the component renders.
-  useEffect(() => {
-    Requests.getAllDogs().then(setAllDogs);
-  }, []);
+export const FunctionalSection: React.FC<FunctionalSectionProps> = ({
+  children, allDogs, showCreateDog, setShowCreateDog
+}) => {
+  // State of dogs shown based on all dogs, favorite or unfavorite dogs.
+  const [dogsToShow, setDogsToShow] = useState<DogsToShowType>("ShowAllDogs");
 
-  // This useEffect simply console logs the allDogs after each change.
-  useEffect(() => {
-    console.log(allDogs);
-  }, [allDogs]);
+  // Variables to filter the allDogs array by their 'isFavorite' property.
+  const everyFavoriteDog = allDogs?.filter((pup: Dog) => pup.isFavorite || []);
+  const unFavoriteDog = allDogs?.filter((pup: Dog) => !pup.isFavorite || []);
 
-  //Variables to filter the allDogs array by their 'isFavorite' property.
-  const everyFavoriteDog = allDogs.filter((pup) => pup.isFavorite);
-  const unFavoriteDog = allDogs.filter((pup) => !pup.isFavorite);
-
-  // dogArray will be equal to the variables above dependent on the state of the users selection.
+  // DogArray will be equal to the variables above dependent on the state of the users selection.
   let dogArray: Dog[] = [];
-  if (dogsToShow === "ShowAllDogs") {
-    dogArray = allDogs;
-  } else if (dogsToShow === "ShowFavoriteDogs") {
-    dogArray = everyFavoriteDog;
-  } else if (dogsToShow === "ShowUnfavoriteDogs") {
-    dogArray = unFavoriteDog;
-    console.log(dogArray, ": is dogArray");
-  }
+  dogsToShow === "ShowAllDogs"
+    ? (dogArray = allDogs)
+    : dogsToShow === "ShowFavoriteDogs"
+    ? (dogArray = everyFavoriteDog)
+    : (dogArray = unFavoriteDog);
 
   return (
     <section id="main-section">
@@ -63,7 +56,7 @@ export const FunctionalSection = () => {
               );
             }}
           >
-            favorited ( {everyFavoriteDog.length} )
+            favorited ( {everyFavoriteDog?.length} )
           </div>
 
           {/* This should display the unfavorited count */}
@@ -80,7 +73,7 @@ export const FunctionalSection = () => {
               );
             }}
           >
-            unfavorited ( {unFavoriteDog.length} )
+            unfavorited ( {unFavoriteDog?.length} )
           </div>
           <div
             className={`selector ${showCreateDog ? "active" : null}`}
@@ -92,24 +85,7 @@ export const FunctionalSection = () => {
           </div>
         </div>
       </div>
-      <div className="content-container">
-        {!showCreateDog ? (
-          <FunctionalDogs
-            allDogs={allDogs}
-            setAllDogs={setAllDogs}
-            dogArray={dogArray}
-            isLoading={isLoading}
-            setIsLoading={setIsLoading}
-          />
-        ) : (
-          <FunctionalCreateDogForm
-            allDogs={allDogs}
-            setAllDogs={setAllDogs}
-            isLoading={isLoading}
-            setIsLoading={setIsLoading}
-          />
-        )}
-      </div>
+      <div className="content-container">{children}</div>
     </section>
   );
 };

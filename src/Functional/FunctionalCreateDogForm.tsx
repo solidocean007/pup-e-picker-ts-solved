@@ -2,6 +2,7 @@ import { useState } from "react";
 import { dogPictures } from "../dog-pictures";
 import { Dog } from "../types";
 import { Requests } from "../api";
+import { toast } from "react-hot-toast";
 
 export type TNewDog = {
   name: string;
@@ -22,13 +23,13 @@ export const FunctionalCreateDogForm = ({
   allDogs: Dog[];
   setAllDogs: (allDogs: Dog[]) => void;
   isLoading: boolean;
-  setIsLoading: (arg: boolean) => boolean;
+  setIsLoading: React.Dispatch<React.SetStateAction<boolean>>;
 }) => {
   const [newDog, setNewDog] = useState<Omit<Dog, "id">>({
     name: "",
     description: "",
     image: defaultSelectedImage,
-    isFavorite: true,
+    isFavorite: false,
   });
 
   const formReset = () => {
@@ -36,7 +37,7 @@ export const FunctionalCreateDogForm = ({
       name: "",
       description: "",
       image: defaultSelectedImage,
-      isFavorite: true,
+      isFavorite: false,
     });
   };
 
@@ -51,6 +52,8 @@ export const FunctionalCreateDogForm = ({
             setIsLoading(true);
             const updatedDogs = [...allDogs, createdDog];
             setAllDogs(updatedDogs);
+          }).then(()=>{
+            toast.success(`Created ${newDog.name}`)
           })
           .finally(() => setIsLoading(false));
         formReset();
