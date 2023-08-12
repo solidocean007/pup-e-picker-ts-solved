@@ -1,41 +1,6 @@
 {
   "dogs": [
     {
-      "name": "Bernhard",
-      "image": "/assets/corgi.png",
-      "description": "24/365 Electric Moscovium Practical JSON snooze yellow",
-      "isFavorite": true,
-      "id": 11
-    },
-    {
-      "name": "Sophia",
-      "image": "/assets/boxer.png",
-      "description": "West Keyboard systems Concrete Beatty orchestrate amusing",
-      "isFavorite": true,
-      "id": 12
-    },
-    {
-      "name": "Riley",
-      "image": "/assets/blue-heeler.png",
-      "description": "Ryan Gasoline Recumbent degree yellow",
-      "isFavorite": false,
-      "id": 13
-    },
-    {
-      "name": "Coy",
-      "image": "/assets/corgi.png",
-      "description": "Southeast occupation Manager Sausages Chevrolet opposite payment",
-      "isFavorite": true,
-      "id": 14
-    },
-    {
-      "name": "Kamille",
-      "image": "/assets/chihuahua.avif",
-      "description": "ROI Chips Loan Southwest Northwest synergy Germany circuit",
-      "isFavorite": false,
-      "id": 15
-    },
-    {
       "name": "Taryn",
       "image": "/assets/corgi.png",
       "description": "Northeast Rock San Ruthenium Intelligent regarding Cambridgeshire",
@@ -46,14 +11,14 @@
       "name": "Elda",
       "image": "/assets/dalmation.png",
       "description": "capacitor invoice Northwest West structure red Facilitator",
-      "isFavorite": true,
+      "isFavorite": false,
       "id": 17
     },
     {
       "name": "Grayce",
       "image": "/assets/dalmation.png",
       "description": "invoice Computer Metal Borders hmph",
-      "isFavorite": false,
+      "isFavorite": true,
       "id": 18
     },
     {
@@ -67,29 +32,43 @@
       "name": "Beefy",
       "description": "Big dog",
       "image": "/assets/blue-heeler.png",
-      "isFavorite": true,
+      "isFavorite": false,
       "id": 20
     },
     {
       "name": "Beefy",
       "description": "Big dog",
       "image": "/assets/blue-heeler.png",
-      "isFavorite": true,
+      "isFavorite": false,
       "id": 21
     },
     {
       "name": "Rex",
       "description": "likes sex",
       "image": "/assets/blue-heeler.png",
-      "isFavorite": true,
+      "isFavorite": false,
       "id": 22
     },
     {
       "name": "stuffy",
       "description": "with the buffy",
       "image": "/assets/blue-heeler.png",
-      "isFavorite": true,
+      "isFavorite": false,
       "id": 23
+    },
+    {
+      "name": "Fido",
+      "description": "yo yo",
+      "image": "/assets/blue-heeler.png",
+      "isFavorite": true,
+      "id": 24
+    },
+    {
+      "name": "Ruhroh",
+      "description": "who goes there?",
+      "image": "/assets/blue-heeler.png",
+      "isFavorite": false,
+      "id": 25
     }
   ]
 }

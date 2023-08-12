@@ -1,21 +1,28 @@
 import { DogCard } from "../Shared/DogCard";
 import { Dog } from "../types";
 import { Requests } from "../api";
+// import React, { Dispatch, ReactEventHandler, useState } from "react";
+
+export type DogsToShowType =
+  | "ShowAllDogs"
+  | "ShowFavoriteDogs"
+  | "ShowUnfavoriteDogs";
 
 export const FunctionalDogs = ({
   allDogs,
-  setAllDogs,
   dogArray,
+  setAllDogs,
   isLoading,
   setIsLoading,
 }: {
   allDogs: Dog[];
-  setAllDogs: (allDogs: Dog[]) => void;
   dogArray: Dog[];
+  setAllDogs: React.Dispatch<React.SetStateAction<Dog[]>>;
   isLoading: boolean;
-  setIsLoading: (arg: boolean) => boolean;
+  setIsLoading: React.Dispatch<React.SetStateAction<boolean>>;
 }) => {
-  
+ 
+
   return (
     <>
       <h1>{isLoading ? "Loading..." : null}</h1>
@@ -35,23 +42,27 @@ export const FunctionalDogs = ({
           }}
           onHeartClick={() => {
             const updatedDog = { ...dog, isFavorite: false };
-            Requests.updateDog(dog.id, updatedDog).then(() => {
-              setIsLoading(true);
-              const updatedDogs = allDogs.map((d) =>
-                d.id === dog.id ? updatedDog : d
-              );
-              setAllDogs(updatedDogs);
-            }).then(()=>setIsLoading(false));
+            Requests.updateDog(dog.id, updatedDog)
+              .then(() => {
+                setIsLoading(true);
+                const updatedDogs = allDogs.map((d) =>
+                  d.id === dog.id ? updatedDog : d
+                );
+                setAllDogs(updatedDogs);
+              })
+              .then(() => setIsLoading(false));
           }}
           onEmptyHeartClick={() => {
             const updatedDog = { ...dog, isFavorite: true };
-            Requests.updateDog(dog.id, updatedDog).then(() => {
-              setIsLoading(true);
-              const updatedDogs = allDogs.map((d) =>
-                d.id === dog.id ? updatedDog : d
-              );
-              setAllDogs(updatedDogs);
-            }).then(()=>setIsLoading(false));
+            Requests.updateDog(dog.id, updatedDog)
+              .then(() => {
+                setIsLoading(true);
+                const updatedDogs = allDogs.map((d) =>
+                  d.id === dog.id ? updatedDog : d
+                );
+                setAllDogs(updatedDogs);
+              })
+              .then(() => setIsLoading(false));
           }}
           isLoading={false}
         />
