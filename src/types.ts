@@ -5,4 +5,9 @@ export type Dog = {
   description: string;
   isFavorite: boolean;
   name: string;
-}
+};
+
+export type DogsToShowType =
+  | "ShowAllDogs"
+  | "ShowFavoriteDogs"
+  | "ShowUnfavoriteDogs";

@@ -1,17 +1,10 @@
 {
   "dogs": [
     {
-      "name": "Taryn",
-      "image": "/assets/corgi.png",
-      "description": "Northeast Rock San Ruthenium Intelligent regarding Cambridgeshire",
-      "isFavorite": true,
-      "id": 16
-    },
-    {
       "name": "Elda",
       "image": "/assets/dalmation.png",
       "description": "capacitor invoice Northwest West structure red Facilitator",
-      "isFavorite": false,
+      "isFavorite": true,
       "id": 17
     },
     {
@@ -20,20 +13,6 @@
       "description": "invoice Computer Metal Borders hmph",
       "isFavorite": true,
       "id": 18
-    },
-    {
-      "name": "Hilton",
-      "image": "/assets/dalmation.png",
-      "description": "consequently lux Alaska Bedfordshire wetly Virginia Electronic Demigender",
-      "isFavorite": false,
-      "id": 19
-    },
-    {
-      "name": "Beefy",
-      "description": "Big dog",
-      "image": "/assets/blue-heeler.png",
-      "isFavorite": false,
-      "id": 20
     },
     {
       "name": "Beefy",
@@ -55,20 +34,6 @@
       "image": "/assets/blue-heeler.png",
       "isFavorite": false,
       "id": 23
-    },
-    {
-      "name": "Fido",
-      "description": "yo yo",
-      "image": "/assets/blue-heeler.png",
-      "isFavorite": true,
-      "id": 24
-    },
-    {
-      "name": "Ruhroh",
-      "description": "who goes there?",
-      "image": "/assets/blue-heeler.png",
-      "isFavorite": false,
-      "id": 25
     }
   ]
 }

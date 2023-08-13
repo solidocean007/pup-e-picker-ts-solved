@@ -1,12 +1,7 @@
 import { DogCard } from "../Shared/DogCard";
 import { Dog } from "../types";
 import { Requests } from "../api";
-// import React, { Dispatch, ReactEventHandler, useState } from "react";
 
-export type DogsToShowType =
-  | "ShowAllDogs"
-  | "ShowFavoriteDogs"
-  | "ShowUnfavoriteDogs";
 
 export const FunctionalDogs = ({
   allDogs,

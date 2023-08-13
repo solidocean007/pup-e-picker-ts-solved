@@ -41,23 +41,29 @@ export const FunctionalCreateDogForm = ({
     });
   };
 
+  const validEntry = newDog.name.length > 0 && newDog.description.length >0;
   return (
     <form
       action=""
       id="create-dog-form"
       onSubmit={(e) => {
         e.preventDefault();
-        Requests.postDog(newDog)
-          .then((createdDog) => {
-            setIsLoading(true);
-            const updatedDogs = [...allDogs, createdDog];
-            setAllDogs(updatedDogs);
-          }).then(()=>{
-            toast.success(`Created ${newDog.name}`)
-          })
-          .finally(() => setIsLoading(false));
-        formReset();
-      }}
+        if (validEntry) {
+            Requests.postDog(newDog)
+                .then((createdDog) => {
+                    setIsLoading(true);
+                    const updatedDogs = [...allDogs, createdDog];
+                    setAllDogs(updatedDogs);
+                })
+                .then(() => {
+                    toast.success(`Created ${newDog.name}`);
+                })
+                .finally(() => setIsLoading(false));
+            formReset();
+        } else {
+            toast.error('Please fill out both the name and description.');  // Optional: Provide feedback to the user
+        }
+    }}
     >
       <h4>Create a New Dog</h4>
       <label htmlFor="name">Dog Name</label>
@@ -65,7 +71,7 @@ export const FunctionalCreateDogForm = ({
         type="text"
         value={newDog?.name}
         onChange={(e) => setNewDog((dog) => ({ ...dog, name: e.target.value }))}
-        disabled={false}
+        disabled={isLoading}
       />
       <label htmlFor="description">Dog Description</label>
       <textarea
@@ -77,7 +83,7 @@ export const FunctionalCreateDogForm = ({
         id=""
         cols={80}
         rows={10}
-        disabled={false}
+        disabled={isLoading}
       ></textarea>
       <label htmlFor="picture">Select an Image</label>
       <select
@@ -88,6 +94,7 @@ export const FunctionalCreateDogForm = ({
             image: e.target.value,
           }))
         }
+        disabled={isLoading}
       >
         {Object.entries(dogPictures).map(([label, pictureValue]) => {
           return (

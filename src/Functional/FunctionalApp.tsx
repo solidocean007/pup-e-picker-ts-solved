@@ -1,10 +1,10 @@
-import { FunctionalSection } from "./FunctionalSection";
 import { useState, useEffect } from "react";
+import { FunctionalSection } from "./FunctionalSection";
 import { FunctionalDogs } from "./FunctionalDogs";
 import { FunctionalCreateDogForm } from "./FunctionalCreateDogForm";
 import { Requests } from "../api";
 import { Dog } from "../types";
-import { DogsToShowType } from "./FunctionalDogs";
+import { DogsToShowType } from "../types";
 
 export function FunctionalApp() {
   // State of section: show dogs or show create dog

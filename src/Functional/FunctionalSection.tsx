@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 import { Dog } from "../types";
-import { DogsToShowType } from "./FunctionalDogs";
+import { DogsToShowType } from "../types";
 
 interface FunctionalSectionProps {
   children: React.ReactNode;
@@ -32,7 +32,7 @@ export const FunctionalSection: React.FC<FunctionalSectionProps> = ({
       );
     } else {
       setDogsToShow(
-        dogsToShow === "ShowFavoriteDogs" ? "ShowUnfavoriteDogs" : "ShowAllDogs"
+        dogsToShow === "ShowUnfavoriteDogs" ? "ShowAllDogs" : "ShowUnfavoriteDogs"
       );
     }
     }
