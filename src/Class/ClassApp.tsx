@@ -76,14 +76,14 @@ export class ClassApp extends Component {
               allDogs={allDogs}
               dogArray={dogArray}
               setAllDogs={this.setAllDogs}
-              isLoading={this.isLoading}
+              isLoading={this.state.isLoading}
               setIsLoading={this.setIsLoading}
             />
           ) : (
             <ClassCreateDogForm
               allDogs={allDogs}
               setAllDogs={this.setAllDogs}
-              isLoading={this.isLoading}
+              isLoading={this.state.isLoading}
               setIsLoading={this.setIsLoading}
             />
           )}

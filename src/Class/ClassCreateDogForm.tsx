@@ -15,7 +15,7 @@ interface ClassCreateDogFormProps {
   allDogs: Dog[];
   setAllDogs: (allDogs: Dog[]) => void;
   isLoading: boolean;
-  setIsLoading: (value: boolean) => boolean;
+  setIsLoading: (value: boolean) => void;
 }
 
 // use this as your default selected image
